@@ -11,8 +11,3 @@ Expected public URL:
 
 - `https://ivpk.github.io/core_vocabularies/vssa/risr/core/1.0/`
 
-## GitHub Pages configuration
-Settings → Pages:
-- Source: Deploy from a branch
-- Branch: main
-- Folder: /docs
