@@ -81,6 +81,172 @@ underlying the RISR core vocabulary.
     <tr><td><code>risr:inEnum</code></td><td>Links an <code>EnumItem</code> to its <code>Enum</code> (intended 1..1; enforced in SHACL).</td></tr>
   </tbody>
 </table>
+    <h2>Model vocabulary</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name (LT)</th>
+      <th>Name (EN)</th>
+      <th>RDF property</th>
+      <th>Range</th>
+      <th>Cardinality</th>
+      <th>Definition</th>
+      <th>Scope / Usage</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Pavadinimas</td>
+      <td><strong>Label</strong></td>
+      <td><code>rdfs:label</code></td>
+      <td><code>rdfs:Literal</code></td>
+      <td>0..1</td>
+      <td>Human-readable name of the object.</td>
+      <td>Used for displaying the object name to users.</td>
+    </tr>
+
+    <tr>
+      <td>IRI (nuoroda)</td>
+      <td><strong>IRI (identifier)</strong></td>
+      <td>—</td>
+      <td>IRI</td>
+      <td>1..1</td>
+      <td>Canonical identifier of the resource.</td>
+      <td>Used as the unique RDF identifier of the resource.</td>
+    </tr>
+
+    <tr>
+      <td>Intervalas</td>
+      <td><strong>Range</strong></td>
+      <td><code>rdfs:range</code></td>
+      <td><code>rdfs:Resource</code></td>
+      <td>0..1</td>
+      <td>Defines the range of values that a property can take.</td>
+      <td>Used in property definitions.</td>
+    </tr>
+
+    <tr>
+      <td>Kardinalumas</td>
+      <td><strong>Cardinality</strong></td>
+      <td><code>owl:cardinality</code></td>
+      <td><code>xsd:nonNegativeInteger</code></td>
+      <td>0..1</td>
+      <td>Specifies the allowed number of values for a property.</td>
+      <td>Used to constrain data in SHACL / OWL.</td>
+    </tr>
+
+    <tr>
+      <td>Apibrėžimas</td>
+      <td><strong>Definition</strong></td>
+      <td><code>skos:definition</code></td>
+      <td><code>rdf:langString</code></td>
+      <td>0..1</td>
+      <td>Formal textual definition of the term.</td>
+      <td>Normative description of the meaning of the term.</td>
+    </tr>
+
+    <tr>
+      <td>Panaudojimas</td>
+      <td><strong>Scope</strong></td>
+      <td><code>skos:scopeNote</code></td>
+      <td><code>rdf:langString</code></td>
+      <td>0..1</td>
+      <td>Notes on how and when the term should be used.</td>
+      <td>Provides guidance on practical usage.</td>
+    </tr>
+
+    <tr>
+      <td>_type</td>
+      <td><strong>Type</strong></td>
+      <td><code>rdf:type</code></td>
+      <td><code>rdfs:Class</code></td>
+      <td>1..1</td>
+      <td>Code name of the model or namespace.</td>
+      <td>Corresponds to the DSA model name.</td>
+    </tr>
+
+    <tr>
+      <td>_id</td>
+      <td><strong>Identifier</strong></td>
+      <td><code>dct:identifier</code></td>
+      <td><code>xsd:string</code></td>
+      <td>1..1</td>
+      <td>Unique object identifier in UUID format.</td>
+      <td>Used to uniquely identify an object.</td>
+    </tr>
+
+    <tr>
+      <td>_revision</td>
+      <td><strong>Revision</strong></td>
+      <td><code>dct:identifier</code></td>
+      <td><code>xsd:string</code></td>
+      <td>1..1</td>
+      <td>Object version identifier (revision number).</td>
+      <td>Used to ensure data integrity during updates. Each modification requires matching revision numbers; the revision changes whenever the object is updated.</td>
+    </tr>
+
+    <tr>
+      <td>_txn</td>
+      <td><strong>Transaction ID</strong></td>
+      <td><code>dct:identifier</code></td>
+      <td><code>xsd:string</code></td>
+      <td>1..1</td>
+      <td>Transaction identifier.</td>
+      <td>During a single request, multiple objects may be modified; all such objects share the same transaction identifier.</td>
+    </tr>
+
+    <tr>
+      <td>_data</td>
+      <td><strong>Data list</strong></td>
+      <td><code>rdf:List</code></td>
+      <td><code>rdfs:Resource</code></td>
+      <td>1..1</td>
+      <td>List of objects when multiple objects are returned together.</td>
+      <td>Used when returning multiple objects in a container.</td>
+    </tr>
+
+    <tr>
+      <td>_cid</td>
+      <td><strong>Sequence ID</strong></td>
+      <td><code>rdf:subject</code></td>
+      <td><code>xsd:string</code></td>
+      <td>1..1</td>
+      <td>Sequence identifier.</td>
+      <td>Used as a change identifier in <code>changes</code> queries.</td>
+    </tr>
+
+    <tr>
+      <td>_created</td>
+      <td><strong>Created date</strong></td>
+      <td><code>dct:created</code></td>
+      <td><code>xsd:dateTime</code></td>
+      <td>0..1</td>
+      <td>Date and time when the record was created.</td>
+      <td>ISO 8601 date-time format with timezone: <code>YYYY-MM-DDThh:mm:ss±hh:mm</code>.</td>
+    </tr>
+
+    <tr>
+      <td>_updated</td>
+      <td><strong>Updated date</strong></td>
+      <td><code>dct:modified</code></td>
+      <td><code>xsd:dateTime</code></td>
+      <td>0..1</td>
+      <td>Date and time when the record was last modified.</td>
+      <td>Used in <code>changes</code> queries; ISO 8601 format with timezone.</td>
+    </tr>
+
+    <tr>
+      <td>_label</td>
+      <td><strong>Human-readable label</strong></td>
+      <td><code>rdfs:label</code></td>
+      <td><code>rdfs:Literal</code></td>
+      <td>0..1</td>
+      <td>Human-readable name of the object.</td>
+      <td>Intended for display purposes.</td>
+    </tr>
+  </tbody>
+</table>
+
  </section>
 </div>
 <footer>
