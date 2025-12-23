@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF
+  xmlns:risr="https://data.gov.lt/datasets/gov/vssa/risr/core/1.0/"
+  xmlns:risr-api="https://data.gov.lt/datasets/gov/vssa/risr/core/1.0/api/"
+  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+  xmlns:skos="http://www.w3.org/2004/02/skos/core#">
+
+  <risr:Enum rdf:about="https://data.gov.lt/datasets/gov/vssa/risr/core/1.0/ExampleStatusEnum">
+    <risr:code>STATUS</risr:code>
+    <skos:prefLabel xml:lang="lt">Būsena</skos:prefLabel>
+    <skos:prefLabel xml:lang="en">Status</skos:prefLabel>
+    <skos:definition xml:lang="lt">Valdomas būsenų sąrašas pavyzdžiui.</skos:definition>
+    <skos:definition xml:lang="en">A controlled list of statuses for demonstration.</skos:definition>
+  </risr:Enum>
+
+  <risr:EnumItem rdf:about="https://data.gov.lt/datasets/gov/vssa/risr/core/1.0/StatusActive">
+    <risr:_id>3fa85f64-5717-4562-b3fc-2c963f66afa6</risr:_id>
+    <risr:_revision>1</risr:_revision>
+    <risr:_txn>txn-20251223-0001</risr:_txn>
+    <risr:_created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2025-12-23T10:15:30Z</risr:_created>
+    <risr:_label xml:lang="lt">Aktyvus</risr:_label>
+    <risr:code>ACTIVE</risr:code>
+    <skos:prefLabel xml:lang="lt">Aktyvus</skos:prefLabel>
+    <skos:prefLabel xml:lang="en">Active</skos:prefLabel>
+    <skos:definition xml:lang="lt">Objektas yra aktyvus.</skos:definition>
+    <skos:definition xml:lang="en">The object is active.</skos:definition>
+    <risr:inEnum rdf:resource="https://data.gov.lt/datasets/gov/vssa/risr/core/1.0/ExampleStatusEnum"/>
+  </risr:EnumItem>
+
+  <risr:EnumItem rdf:about="https://data.gov.lt/datasets/gov/vssa/risr/core/1.0/StatusInactive">
+    <risr:_id>7e57d004-2b97-0e7a-b45f-5387367791cd</risr:_id>
+    <risr:_revision>1</risr:_revision>
+    <risr:_txn>txn-20251223-0001</risr:_txn>
+    <risr:_created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2025-12-23T10:15:30Z</risr:_created>
+    <risr:_label xml:lang="lt">Neaktyvus</risr:_label>
+    <risr:code>INACTIVE</risr:code>
+    <skos:prefLabel xml:lang="lt">Neaktyvus</skos:prefLabel>
+    <skos:prefLabel xml:lang="en">Inactive</skos:prefLabel>
+    <skos:definition xml:lang="lt">Objektas yra neaktyvus.</skos:definition>
+    <skos:definition xml:lang="en">The object is inactive.</skos:definition>
+    <risr:inEnum rdf:resource="https://data.gov.lt/datasets/gov/vssa/risr/core/1.0/ExampleStatusEnum"/>
+  </risr:EnumItem>
+
+  <risr-api:ResponseContainer rdf:about="https://data.gov.lt/datasets/gov/vssa/risr/core/1.0/api/ExampleResponse">
+    <risr-api:_cid>cid-0001</risr-api:_cid>
+    <risr-api:_data rdf:resource="https://data.gov.lt/datasets/gov/vssa/risr/core/1.0/ExampleStatusEnum"/>
+    <risr-api:_data rdf:resource="https://data.gov.lt/datasets/gov/vssa/risr/core/1.0/StatusActive"/>
+    <risr-api:_data rdf:resource="https://data.gov.lt/datasets/gov/vssa/risr/core/1.0/StatusInactive"/>
+  </risr-api:ResponseContainer>
+
+</rdf:RDF>

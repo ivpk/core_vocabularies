@@ -1,0 +1,38 @@
+@prefix risr:     <https://data.gov.lt/datasets/gov/vssa/risr/core/1.0/> .
+@prefix risr-api: <https://data.gov.lt/datasets/gov/vssa/risr/core/1.0/api/> .
+@prefix xsd:      <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:     <http://www.w3.org/2004/02/skos/core#> .
+
+risr:ExampleStatusEnum a risr:Enum ;
+  risr:code "STATUS" ;
+  skos:prefLabel "Būsena"@lt, "Status"@en ;
+  skos:definition "Valdomas būsenų sąrašas pavyzdžiui."@lt,
+                  "A controlled list of statuses for demonstration."@en .
+
+risr:StatusActive a risr:EnumItem ;
+  risr:_id "3fa85f64-5717-4562-b3fc-2c963f66afa6" ;
+  risr:_revision "1" ;
+  risr:_txn "txn-20251223-0001" ;
+  risr:_created "2025-12-23T10:15:30Z"^^xsd:dateTime ;
+  risr:_label "Aktyvus"@lt ;
+  risr:code "ACTIVE" ;
+  skos:prefLabel "Aktyvus"@lt, "Active"@en ;
+  skos:definition "Objektas yra aktyvus."@lt, "The object is active."@en ;
+  risr:inEnum risr:ExampleStatusEnum .
+
+risr:StatusInactive a risr:EnumItem ;
+  risr:_id "7e57d004-2b97-0e7a-b45f-5387367791cd" ;
+  risr:_revision "1" ;
+  risr:_txn "txn-20251223-0001" ;
+  risr:_created "2025-12-23T10:15:30Z"^^xsd:dateTime ;
+  risr:_label "Neaktyvus"@lt ;
+  risr:code "INACTIVE" ;
+  skos:prefLabel "Neaktyvus"@lt, "Inactive"@en ;
+  skos:definition "Objektas yra neaktyvus."@lt, "The object is inactive."@en ;
+  risr:inEnum risr:ExampleStatusEnum .
+
+risr-api:ExampleResponse a risr-api:ResponseContainer ;
+  risr-api:_cid "cid-0001" ;
+  risr-api:_data risr:ExampleStatusEnum,
+                risr:StatusActive,
+                risr:StatusInactive .

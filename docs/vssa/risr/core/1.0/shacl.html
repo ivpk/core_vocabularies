@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>RISR Core Vocabulary 1.0 — SHACL</title>
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+
+<div class="topbar">
+  <div class="inner">
+    <div class="brand">Core vocabularies</div>
+    <div class="badges">
+      <span class="badge">vssa</span>
+      <span class="badge">risr</span>
+      <span class="badge">core</span>
+      <span class="badge">1.0</span>
+    </div>
+    <div style="flex:1"></div>
+    <a href="https://github.com/ivpk/core_vocabularies" style="color:#fff; opacity:.95">GitHub</a>
+  </div>
+</div>
+<div class="breadcrumbs" style="background:var(--accent);">
+  <div style="max-width:1200px;margin:0 auto;padding:0 18px 10px 18px;">
+    <span class="path">vssa / risr / core / 1.0</span>
+  </div>
+</div>
+
+<div class="wrap">
+  <nav class="nav">
+    <h3>Documentation</h3>
+    <a href="index.html" class="">Overview</a>
+<a href="core.html" class="">Core (TTL/RDF)</a>
+<a href="api.html" class="">API (TTL/RDF)</a>
+<a href="shacl.html" class="active">SHACL Shapes</a>
+<a href="examples.html" class="">Examples</a>
+<a href="downloads.html" class="">Downloads</a>
+    <hr/>
+    <h3>IRI</h3>
+    <div class="muted" style="font-size:13px;word-break:break-all">
+      https://data.gov.lt/datasets/gov/vssa/risr/core/1.0/
+    </div>
+  </nav>
+  <section class="main">
+    
+<h1>SHACL shapes</h1>
+<p class="muted">Validation constraints (cardinalities, datatypes, patterns) aligned with the intended lightweight OWL model.</p>
+
+<h2>risr-core-1.0.shacl.ttl</h2>
+<div class="codebox">
+  <div class="toolbar">
+    <button data-copy="shacl_ttl" onclick="copyText('shacl_ttl')">Copy</button>
+    <span class="small">text/turtle</span>
+  </div>
+  <pre id="shacl_ttl">@prefix sh:       &lt;http://www.w3.org/ns/shacl#&gt; .
+@prefix risr:     &lt;https://data.gov.lt/datasets/gov/vssa/risr/core/1.0/&gt; .
+@prefix risr-api: &lt;https://data.gov.lt/datasets/gov/vssa/risr/core/1.0/api/&gt; .
+@prefix skos:     &lt;http://www.w3.org/2004/02/skos/core#&gt; .
+@prefix rdf:      &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .
+@prefix rdfs:     &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .
+@prefix xsd:      &lt;http://www.w3.org/2001/XMLSchema#&gt; .
+
+risr:EntityShape
+  a sh:NodeShape ;
+  sh:targetClass risr:Entity ;
+  rdfs:label "Entity constraints"@en, "Esinio apribojimai"@lt ;
+
+  sh:property [
+    sh:path risr:_id ;
+    sh:datatype xsd:string ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:pattern "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$" ;
+    sh:message "_id must be a UUID string (1..1)."@en ;
+    sh:message "_id turi būti UUID formato eilutė (1..1)."@lt ;
+  ] ;
+
+  sh:property [
+    sh:path risr:_revision ;
+    sh:datatype xsd:string ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:message "_revision is required (1..1)."@en ;
+    sh:message "_revision privalomas (1..1)."@lt ;
+  ] ;
+
+  sh:property [
+    sh:path risr:_txn ;
+    sh:datatype xsd:string ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:message "_txn is required (1..1)."@en ;
+    sh:message "_txn privalomas (1..1)."@lt ;
+  ] ;
+
+  sh:property [
+    sh:path risr:_created ;
+    sh:datatype xsd:dateTime ;
+    sh:minCount 0 ;
+    sh:maxCount 1 ;
+    sh:message "_created must be xsd:dateTime (0..1)."@en ;
+    sh:message "_created turi būti xsd:dateTime (0..1)."@lt ;
+  ] ;
+
+  sh:property [
+    sh:path risr:_updated ;
+    sh:datatype xsd:dateTime ;
+    sh:minCount 0 ;
+    sh:maxCount 1 ;
+    sh:message "_updated must be xsd:dateTime (0..1)."@en ;
+    sh:message "_updated turi būti xsd:dateTime (0..1)."@lt ;
+  ] ;
+
+  sh:property [
+    sh:path risr:_label ;
+    sh:nodeKind sh:Literal ;
+    sh:minCount 0 ;
+    sh:maxCount 1 ;
+    sh:message "_label must be a literal (0..1)."@en ;
+    sh:message "_label turi būti literalas (0..1)."@lt ;
+  ] .
+
+risr:EnumShape
+  a sh:NodeShape ;
+  sh:targetClass risr:Enum ;
+  rdfs:label "Enumeration constraints"@en, "Enumeracijos apribojimai"@lt ;
+
+  sh:property [
+    sh:path risr:code ;
+    sh:nodeKind sh:Literal ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:message "Enum must have exactly one business key (risr:code) (1..1)."@en ;
+    sh:message "Enum privalo turėti tik vieną verslo raktą (risr:code) (1..1)."@lt ;
+  ] ;
+
+  sh:property [
+    sh:path skos:prefLabel ;
+    sh:datatype rdf:langString ;
+    sh:minCount 1 ;
+    sh:message "Enum must have at least one skos:prefLabel with a language tag."@en ;
+    sh:message "Enum privalo turėti bent vieną skos:prefLabel su kalbos žyma."@lt ;
+  ] .
+
+risr:EnumItemShape
+  a sh:NodeShape ;
+  sh:targetClass risr:EnumItem ;
+  rdfs:label "Enumeration item constraints"@en, "Enumeracijos reikšmės apribojimai"@lt ;
+
+  sh:property [
+    sh:path risr:code ;
+    sh:nodeKind sh:Literal ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:message "EnumItem must have exactly one business key (risr:code) (1..1)."@en ;
+    sh:message "EnumItem privalo turėti tik vieną verslo raktą (risr:code) (1..1)."@lt ;
+  ] ;
+
+  sh:property [
+    sh:path risr:inEnum ;
+    sh:class risr:Enum ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:message "EnumItem must belong to exactly one Enum via risr:inEnum (1..1)."@en ;
+    sh:message "EnumItem privalo priklausyti tik vienai Enum per risr:inEnum (1..1)."@lt ;
+  ] ;
+
+  sh:property [
+    sh:path skos:prefLabel ;
+    sh:datatype rdf:langString ;
+    sh:minCount 1 ;
+    sh:message "EnumItem must have at least one skos:prefLabel with a language tag."@en ;
+    sh:message "EnumItem privalo turėti bent vieną skos:prefLabel su kalbos žyma."@lt ;
+  ] ;
+
+  sh:property [
+    sh:path skos:definition ;
+    sh:datatype rdf:langString ;
+    sh:minCount 0 ;
+    sh:message "If provided, skos:definition must be language-tagged."@en ;
+    sh:message "Jei pateikta, skos:definition turi būti su kalbos žyma."@lt ;
+  ] ;
+
+  sh:property [
+    sh:path skos:broader ;
+    sh:class skos:Concept ;
+    sh:minCount 0 ;
+    sh:message "If provided, skos:broader must point to a skos:Concept."@en ;
+    sh:message "Jei pateikta, skos:broader turi rodyti į skos:Concept."@lt ;
+  ] .
+
+risr-api:ResponseContainerShape
+  a sh:NodeShape ;
+  sh:targetClass risr-api:ResponseContainer ;
+  rdfs:label "API response container constraints"@en, "API atsako konteinerio apribojimai"@lt ;
+
+  sh:property [
+    sh:path risr-api:_data ;
+    sh:nodeKind sh:IRIOrLiteral ;
+    sh:minCount 0 ;
+    sh:message "_data contains response resources (0..n)."@en ;
+    sh:message "_data talpina atsako resursus (0..n)."@lt ;
+  ] ;
+
+  sh:property [
+    sh:path risr-api:_cid ;
+    sh:datatype xsd:string ;
+    sh:minCount 0 ;
+    sh:maxCount 1 ;
+    sh:message "_cid must be a string (0..1)."@en ;
+    sh:message "_cid turi būti eilutė (0..1)."@lt ;
+  ] .
+</pre>
+</div>
+
+
+<h2>risr-core-1.0.shacl.rdf</h2>
+<div class="codebox">
+  <div class="toolbar">
+    <button data-copy="shacl_rdf" onclick="copyText('shacl_rdf')">Copy</button>
+    <span class="small">application/rdf+xml</span>
+  </div>
+  <pre id="shacl_rdf">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;rdf:RDF
+  xmlns:sh="http://www.w3.org/ns/shacl#"
+  xmlns:risr="https://data.gov.lt/datasets/gov/vssa/risr/core/1.0/"
+  xmlns:risr-api="https://data.gov.lt/datasets/gov/vssa/risr/core/1.0/api/"
+  xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema#"&gt;
+  &lt;!-- See Turtle version for full human-readable shapes; this XML contains the same shapes. --&gt;
+&lt;/rdf:RDF&gt;
+</pre>
+</div>
+
+
+  </section>
+</div>
+<footer>
+  Published via GitHub Pages from <code>/docs</code>. Recommended URL:
+  <code>https://ivpk.github.io/core_vocabularies/vssa/risr/core/1.0/</code>
+</footer>
+<script src="assets/scripts.js"></script>
+</body>
+</html>

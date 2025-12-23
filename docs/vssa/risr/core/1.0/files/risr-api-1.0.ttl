@@ -1,0 +1,48 @@
+@prefix risr:     <https://data.gov.lt/datasets/gov/vssa/risr/core/1.0/> .
+@prefix risr-api: <https://data.gov.lt/datasets/gov/vssa/risr/core/1.0/api/> .
+@prefix owl:      <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:     <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:      <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:     <http://www.w3.org/2004/02/skos/core#> .
+@prefix dct:      <http://purl.org/dc/terms/> .
+
+risr-api: a owl:Ontology ;
+  dct:title "RISR API metadata vocabulary"@en,
+            "RISR API metaduomenų žodynas"@lt ;
+  dct:description
+    "API/serialization metadata vocabulary separated from the RISR core vocabulary."@en,
+    "API/serializacijos metaduomenų žodynas, atskirtas nuo RISR core žodyno."@lt ;
+  dct:language "lt", "en" ;
+  dct:hasVersion "1.0" ;
+  dct:identifier "https://data.gov.lt/datasets/gov/vssa/risr/core/1.0/api/"^^xsd:anyURI ;
+  owl:imports risr: .
+
+risr-api:ResponseContainer a owl:Class ;
+  rdfs:label "Response container"@en,
+             "Atsako konteineris"@lt ;
+  skos:definition
+    "A transport container used by the API to return one or more resources together."@en,
+    "Transporto konteineris, kurį API naudoja grąžinti vieną ar daugiau resursų kartu."@lt .
+
+risr-api:_type a owl:AnnotationProperty ;
+  rdfs:label "_type"@en, "_type"@lt ;
+  skos:definition
+    "Code name of the model or namespace; in RDF representations this corresponds to rdf:type."@en,
+    "Kodinis modelio ar vardų erdvės pavadinimas; RDF atvaizdavimuose tai atitinka rdf:type."@lt .
+
+risr-api:_data a owl:ObjectProperty ;
+  rdfs:label "_data"@en, "_data"@lt ;
+  skos:definition
+    "List of objects when multiple objects are provided together in a container."@en,
+    "Objektų sąrašas, kai keli objektai pateikiami kartu konteineryje."@lt ;
+  rdfs:domain risr-api:ResponseContainer ;
+  rdfs:range rdfs:Resource .
+
+risr-api:_cid a owl:DatatypeProperty ;
+  rdfs:label "_cid"@en, "_cid"@lt ;
+  skos:definition
+    "Sequence identifier used in changes queries."@en,
+    "Sekos identifikatorius, naudojamas changes užklausos metu."@lt ;
+  rdfs:domain risr-api:ResponseContainer ;
+  rdfs:range xsd:string .

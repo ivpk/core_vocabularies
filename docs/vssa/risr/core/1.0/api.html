@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>RISR Core Vocabulary 1.0 — API</title>
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+
+<div class="topbar">
+  <div class="inner">
+    <div class="brand">Core vocabularies</div>
+    <div class="badges">
+      <span class="badge">vssa</span>
+      <span class="badge">risr</span>
+      <span class="badge">core</span>
+      <span class="badge">1.0</span>
+    </div>
+    <div style="flex:1"></div>
+    <a href="https://github.com/ivpk/core_vocabularies" style="color:#fff; opacity:.95">GitHub</a>
+  </div>
+</div>
+<div class="breadcrumbs" style="background:var(--accent);">
+  <div style="max-width:1200px;margin:0 auto;padding:0 18px 10px 18px;">
+    <span class="path">vssa / risr / core / 1.0</span>
+  </div>
+</div>
+
+<div class="wrap">
+  <nav class="nav">
+    <h3>Documentation</h3>
+    <a href="index.html" class="">Overview</a>
+<a href="core.html" class="">Core (TTL/RDF)</a>
+<a href="api.html" class="active">API (TTL/RDF)</a>
+<a href="shacl.html" class="">SHACL Shapes</a>
+<a href="examples.html" class="">Examples</a>
+<a href="downloads.html" class="">Downloads</a>
+    <hr/>
+    <h3>IRI</h3>
+    <div class="muted" style="font-size:13px;word-break:break-all">
+      https://data.gov.lt/datasets/gov/vssa/risr/core/1.0/
+    </div>
+  </nav>
+  <section class="main">
+    
+<h1>API module</h1>
+<p class="muted">API/serialization metadata vocabulary, separated from domain semantics.</p>
+
+<h2>risr-api-1.0.ttl</h2>
+<div class="codebox">
+  <div class="toolbar">
+    <button data-copy="api_ttl" onclick="copyText('api_ttl')">Copy</button>
+    <span class="small">text/turtle</span>
+  </div>
+  <pre id="api_ttl">@prefix risr:     &lt;https://data.gov.lt/datasets/gov/vssa/risr/core/1.0/&gt; .
+@prefix risr-api: &lt;https://data.gov.lt/datasets/gov/vssa/risr/core/1.0/api/&gt; .
+@prefix owl:      &lt;http://www.w3.org/2002/07/owl#&gt; .
+@prefix rdf:      &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .
+@prefix rdfs:     &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .
+@prefix xsd:      &lt;http://www.w3.org/2001/XMLSchema#&gt; .
+@prefix skos:     &lt;http://www.w3.org/2004/02/skos/core#&gt; .
+@prefix dct:      &lt;http://purl.org/dc/terms/&gt; .
+
+risr-api: a owl:Ontology ;
+  dct:title "RISR API metadata vocabulary"@en,
+            "RISR API metaduomenų žodynas"@lt ;
+  dct:description
+    "API/serialization metadata vocabulary separated from the RISR core vocabulary."@en,
+    "API/serializacijos metaduomenų žodynas, atskirtas nuo RISR core žodyno."@lt ;
+  dct:language "lt", "en" ;
+  dct:hasVersion "1.0" ;
+  dct:identifier "https://data.gov.lt/datasets/gov/vssa/risr/core/1.0/api/"^^xsd:anyURI ;
+  owl:imports risr: .
+
+risr-api:ResponseContainer a owl:Class ;
+  rdfs:label "Response container"@en,
+             "Atsako konteineris"@lt ;
+  skos:definition
+    "A transport container used by the API to return one or more resources together."@en,
+    "Transporto konteineris, kurį API naudoja grąžinti vieną ar daugiau resursų kartu."@lt .
+
+risr-api:_type a owl:AnnotationProperty ;
+  rdfs:label "_type"@en, "_type"@lt ;
+  skos:definition
+    "Code name of the model or namespace; in RDF representations this corresponds to rdf:type."@en,
+    "Kodinis modelio ar vardų erdvės pavadinimas; RDF atvaizdavimuose tai atitinka rdf:type."@lt .
+
+risr-api:_data a owl:ObjectProperty ;
+  rdfs:label "_data"@en, "_data"@lt ;
+  skos:definition
+    "List of objects when multiple objects are provided together in a container."@en,
+    "Objektų sąrašas, kai keli objektai pateikiami kartu konteineryje."@lt ;
+  rdfs:domain risr-api:ResponseContainer ;
+  rdfs:range rdfs:Resource .
+
+risr-api:_cid a owl:DatatypeProperty ;
+  rdfs:label "_cid"@en, "_cid"@lt ;
+  skos:definition
+    "Sequence identifier used in changes queries."@en,
+    "Sekos identifikatorius, naudojamas changes užklausos metu."@lt ;
+  rdfs:domain risr-api:ResponseContainer ;
+  rdfs:range xsd:string .
+</pre>
+</div>
+
+
+<h2>risr-api-1.0.rdf</h2>
+<div class="codebox">
+  <div class="toolbar">
+    <button data-copy="api_rdf" onclick="copyText('api_rdf')">Copy</button>
+    <span class="small">application/rdf+xml</span>
+  </div>
+  <pre id="api_rdf">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;rdf:RDF
+  xmlns:risr="https://data.gov.lt/datasets/gov/vssa/risr/core/1.0/"
+  xmlns:risr-api="https://data.gov.lt/datasets/gov/vssa/risr/core/1.0/api/"
+  xmlns:owl="http://www.w3.org/2002/07/owl#"
+  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+  xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+  xmlns:dct="http://purl.org/dc/terms/"&gt;
+
+  &lt;owl:Ontology rdf:about="https://data.gov.lt/datasets/gov/vssa/risr/core/1.0/api/"&gt;
+    &lt;dct:title xml:lang="en"&gt;RISR API metadata vocabulary&lt;/dct:title&gt;
+    &lt;dct:title xml:lang="lt"&gt;RISR API metaduomenų žodynas&lt;/dct:title&gt;
+    &lt;dct:description xml:lang="en"&gt;API/serialization metadata vocabulary separated from the RISR core vocabulary.&lt;/dct:description&gt;
+    &lt;dct:description xml:lang="lt"&gt;API/serializacijos metaduomenų žodynas, atskirtas nuo RISR core žodyno.&lt;/dct:description&gt;
+    &lt;dct:language&gt;lt&lt;/dct:language&gt;
+    &lt;dct:language&gt;en&lt;/dct:language&gt;
+    &lt;dct:hasVersion&gt;1.0&lt;/dct:hasVersion&gt;
+    &lt;dct:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"&gt;https://data.gov.lt/datasets/gov/vssa/risr/core/1.0/api/&lt;/dct:identifier&gt;
+    &lt;owl:imports rdf:resource="https://data.gov.lt/datasets/gov/vssa/risr/core/1.0/"/&gt;
+  &lt;/owl:Ontology&gt;
+&lt;/rdf:RDF&gt;
+</pre>
+</div>
+
+
+  </section>
+</div>
+<footer>
+  Published via GitHub Pages from <code>/docs</code>. Recommended URL:
+  <code>https://ivpk.github.io/core_vocabularies/vssa/risr/core/1.0/</code>
+</footer>
+<script src="assets/scripts.js"></script>
+</body>
+</html>

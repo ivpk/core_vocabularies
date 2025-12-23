@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>RISR Core Vocabulary 1.0</title>
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+
+<div class="topbar">
+  <div class="inner">
+    <div class="brand">Core vocabularies</div>
+    <div class="badges">
+      <span class="badge">vssa</span>
+      <span class="badge">risr</span>
+      <span class="badge">core</span>
+      <span class="badge">1.0</span>
+    </div>
+    <div style="flex:1"></div>
+    <a href="https://github.com/ivpk/core_vocabularies" style="color:#fff; opacity:.95">GitHub</a>
+  </div>
+</div>
+<div class="breadcrumbs" style="background:var(--accent);">
+  <div style="max-width:1200px;margin:0 auto;padding:0 18px 10px 18px;">
+    <span class="path">vssa / risr / core / 1.0</span>
+  </div>
+</div>
+
+<div class="wrap">
+  <nav class="nav">
+    <h3>Documentation</h3>
+    <a href="index.html" class="active">Overview</a>
+<a href="core.html" class="">Core (TTL/RDF)</a>
+<a href="api.html" class="">API (TTL/RDF)</a>
+<a href="shacl.html" class="">SHACL Shapes</a>
+<a href="examples.html" class="">Examples</a>
+<a href="downloads.html" class="">Downloads</a>
+    <hr/>
+    <h3>IRI</h3>
+    <div class="muted" style="font-size:13px;word-break:break-all">
+      https://data.gov.lt/datasets/gov/vssa/risr/core/1.0/
+    </div>
+  </nav>
+  <section class="main">
+    
+<h1>RISR Core Vocabulary 1.0</h1>
+<p class="muted">Lightweight OWL2 vocabulary for RISR core semantics. Aligns with SEMIC/ISA² principles: minimal OWL constraints, SHACL for validation, reuse of SKOS + DCTERMS, bilingual LT/EN labels.</p>
+
+<div class="kv">
+  <div class="k">Core IRI</div><div><code>https://data.gov.lt/datasets/gov/vssa/risr/core/1.0/</code></div>
+  <div class="k">API IRI</div><div><code>https://data.gov.lt/datasets/gov/vssa/risr/core/1.0/api/</code></div>
+  <div class="k">Repository</div><div><code>https://github.com/ivpk/core_vocabularies</code></div>
+  <div class="k">Publish path</div><div><code>/vssa/risr/core/1.0/</code></div>
+</div>
+
+<h2>Model summary</h2>
+<table class="table">
+  <thead><tr><th>Element</th><th>Description</th></tr></thead>
+  <tbody>
+    <tr><td><code>risr:Entity</code></td><td>Base abstraction with technical metadata (<code>_id</code>, <code>_revision</code>, <code>_txn</code>, …).</td></tr>
+    <tr><td><code>risr:Enum</code></td><td>Enumeration represented as <code>skos:ConceptScheme</code>.</td></tr>
+    <tr><td><code>risr:EnumItem</code></td><td>Enumeration item represented as <code>skos:Concept</code> and also <code>risr:Entity</code>.</td></tr>
+    <tr><td><code>risr:code</code></td><td>Business identifier (subproperty of <code>skos:notation</code>).</td></tr>
+    <tr><td><code>risr:inEnum</code></td><td>Links an <code>EnumItem</code> to its <code>Enum</code> (intended 1..1; enforced in SHACL).</td></tr>
+  </tbody>
+</table>
+
+<div class="callout">
+  <strong>GitHub Pages configuration:</strong> in the repository settings, set Pages to deploy from branch <code>main</code>, folder <code>/docs</code>.
+</div>
+
+  </section>
+</div>
+<footer>
+  Published via GitHub Pages from <code>/docs</code>. Recommended URL:
+  <code>https://ivpk.github.io/core_vocabularies/vssa/risr/core/1.0/</code>
+</footer>
+<script src="assets/scripts.js"></script>
+</body>
+</html>

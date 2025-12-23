@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>RISR Core Vocabulary 1.0 — Core</title>
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+
+<div class="topbar">
+  <div class="inner">
+    <div class="brand">Core vocabularies</div>
+    <div class="badges">
+      <span class="badge">vssa</span>
+      <span class="badge">risr</span>
+      <span class="badge">core</span>
+      <span class="badge">1.0</span>
+    </div>
+    <div style="flex:1"></div>
+    <a href="https://github.com/ivpk/core_vocabularies" style="color:#fff; opacity:.95">GitHub</a>
+  </div>
+</div>
+<div class="breadcrumbs" style="background:var(--accent);">
+  <div style="max-width:1200px;margin:0 auto;padding:0 18px 10px 18px;">
+    <span class="path">vssa / risr / core / 1.0</span>
+  </div>
+</div>
+
+<div class="wrap">
+  <nav class="nav">
+    <h3>Documentation</h3>
+    <a href="index.html" class="">Overview</a>
+<a href="core.html" class="active">Core (TTL/RDF)</a>
+<a href="api.html" class="">API (TTL/RDF)</a>
+<a href="shacl.html" class="">SHACL Shapes</a>
+<a href="examples.html" class="">Examples</a>
+<a href="downloads.html" class="">Downloads</a>
+    <hr/>
+    <h3>IRI</h3>
+    <div class="muted" style="font-size:13px;word-break:break-all">
+      https://data.gov.lt/datasets/gov/vssa/risr/core/1.0/
+    </div>
+  </nav>
+  <section class="main">
+    
+<h1>Core vocabulary</h1>
+<p class="muted">Canonical core vocabulary in Turtle and RDF/XML.</p>
+
+<h2>risr-core-1.0.ttl</h2>
+<div class="codebox">
+  <div class="toolbar">
+    <button data-copy="core_ttl" onclick="copyText('core_ttl')">Copy</button>
+    <span class="small">text/turtle</span>
+  </div>
+  <pre id="core_ttl">@prefix risr: &lt;https://data.gov.lt/datasets/gov/vssa/risr/core/1.0/&gt; .
+@prefix owl:  &lt;http://www.w3.org/2002/07/owl#&gt; .
+@prefix rdf:  &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .
+@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .
+@prefix xsd:  &lt;http://www.w3.org/2001/XMLSchema#&gt; .
+@prefix skos: &lt;http://www.w3.org/2004/02/skos/core#&gt; .
+@prefix dct:  &lt;http://purl.org/dc/terms/&gt; .
+
+#################################################################
+# Ontology header
+#################################################################
+
+risr: a owl:Ontology ;
+  dct:title "RISR core vocabulary"@en,
+            "RISR branduolinis žodynas"@lt ;
+  dct:description
+    "Lightweight OWL2 core vocabulary aligned with SEMIC guidelines. "
+    "Business identifiers are modeled as SKOS notations; API metadata is excluded."@en,
+    "Lightweight OWL2 branduolinis žodynas pagal SEMIC gaires. "
+    "Verslo identifikatoriai modeliuojami kaip SKOS notacijos; API metaduomenys neįtraukti."@lt ;
+  dct:language "lt", "en" ;
+  dct:hasVersion "1.0" ;
+  dct:identifier "https://data.gov.lt/datasets/gov/vssa/risr/core/1.0/"^^xsd:anyURI .
+
+#################################################################
+# Classes
+#################################################################
+
+risr:Entity a owl:Class ;
+  rdfs:subClassOf rdfs:Resource ;
+  rdfs:label "Entity"@en,
+              "Esinys"@lt ;
+  skos:definition
+    "Base abstraction for domain objects carrying technical identification and lifecycle metadata."@en,
+    "Bazinė domeno objektų abstrakcija, turinti techninius identifikavimo ir gyvavimo ciklo metaduomenis."@lt ;
+  rdfs:comment
+    "Intended cardinalities (not enforced in OWL): "
+    "_id 1..1; _revision 1..1; _txn 1..1; _created 0..1; _updated 0..1; _label 0..1."@en,
+    "Numatomi kardinalumai (OWL lygiu neįtvirtinti): "
+    "_id 1..1; _revision 1..1; _txn 1..1; _created 0..1; _updated 0..1; _label 0..1."@lt .
+
+risr:Enum a owl:Class ;
+  rdfs:subClassOf skos:ConceptScheme ;
+  rdfs:label "Enumeration"@en,
+              "Sąrašas (enumeracija)"@lt ;
+  skos:definition
+    "A controlled list of values represented as a SKOS ConceptScheme."@en,
+    "Valdomas reikšmių sąrašas, realizuotas kaip SKOS sąvokų schema."@lt .
+
+risr:EnumItem a owl:Class ;
+  rdfs:subClassOf skos:Concept, risr:Entity ;
+  rdfs:label "Enumeration item"@en,
+              "Sąrašo reikšmė"@lt ;
+  skos:definition
+    "A value within an enumeration, represented as a SKOS Concept."@en,
+    "Reikšmė enumeracijoje, realizuota kaip SKOS sąvoka."@lt ;
+  rdfs:comment
+    "Intended: exactly one inEnum per EnumItem (1..1). Not enforced (lightweight)."@en,
+    "Numatyta: kiekviena EnumItem turi tik vieną inEnum (1..1). Neįtvirtinta (lightweight)."@lt .
+
+#################################################################
+# Core technical properties (Entity)
+#################################################################
+
+risr:_id a owl:DatatypeProperty ;
+  rdfs:label "_id"@en, "_id"@lt ;
+  skos:definition
+    "Globally unique identifier of the entity (UUID)."@en,
+    "Globaliai unikalus esinio identifikatorius (UUID)."@lt ;
+  rdfs:subPropertyOf dct:identifier ;
+  rdfs:domain risr:Entity ;
+  rdfs:range xsd:string .
+
+risr:_revision a owl:DatatypeProperty ;
+  rdfs:label "_revision"@en, "_revision"@lt ;
+  skos:definition
+    "Entity revision identifier used for version control and concurrency checks."@en,
+    "Esinio revizijos identifikatorius, naudojamas versijų kontrolei ir konkurencijos tikrinimui."@lt ;
+  rdfs:subPropertyOf dct:identifier ;
+  rdfs:domain risr:Entity ;
+  rdfs:range xsd:string .
+
+risr:_txn a owl:DatatypeProperty ;
+  rdfs:label "_txn"@en, "_txn"@lt ;
+  skos:definition
+    "Transaction identifier grouping changes applied together."@en,
+    "Transakcijos identifikatorius, grupuojantis kartu taikomus pakeitimus."@lt ;
+  rdfs:subPropertyOf dct:identifier ;
+  rdfs:domain risr:Entity ;
+  rdfs:range xsd:string .
+
+risr:_created a owl:DatatypeProperty ;
+  rdfs:label "_created"@en, "_created"@lt ;
+  skos:definition
+    "Creation date and time of the entity (ISO 8601)."@en,
+    "Esinio sukūrimo data ir laikas (ISO 8601)."@lt ;
+  rdfs:subPropertyOf dct:created ;
+  rdfs:domain risr:Entity ;
+  rdfs:range xsd:dateTime .
+
+risr:_updated a owl:DatatypeProperty ;
+  rdfs:label "_updated"@en, "_updated"@lt ;
+  skos:definition
+    "Last modification date and time of the entity (ISO 8601)."@en,
+    "Paskutinio esinio keitimo data ir laikas (ISO 8601)."@lt ;
+  rdfs:subPropertyOf dct:modified ;
+  rdfs:domain risr:Entity ;
+  rdfs:range xsd:dateTime .
+
+risr:_label a owl:DatatypeProperty ;
+  rdfs:label "_label"@en, "_label"@lt ;
+  skos:definition
+    "Human-readable name of the entity."@en,
+    "Žmonėms suprantamas esinio pavadinimas."@lt ;
+  rdfs:subPropertyOf rdfs:label ;
+  rdfs:domain risr:Entity ;
+  rdfs:range rdfs:Literal .
+
+#################################################################
+# Core business semantics (Enum / EnumItem)
+#################################################################
+
+risr:code a owl:DatatypeProperty ;
+  rdfs:label "code"@en,
+              "kodas"@lt ;
+  skos:definition
+    "Business identifier (id) of an enumeration or enumeration item."@en,
+    "Enumeracijos arba jos reikšmės verslo identifikatorius (id)."@lt ;
+  rdfs:subPropertyOf skos:notation ;
+  rdfs:range rdfs:Literal .
+
+risr:title a owl:DatatypeProperty ;
+  rdfs:label "title"@en,
+              "pavadinimas"@lt ;
+  skos:definition
+    "Preferred human-readable title (use language tags)."@en,
+    "Pageidautinas pavadinimas žmonėms (naudoti kalbos žymes)."@lt ;
+  rdfs:subPropertyOf skos:prefLabel ;
+  rdfs:range rdf:langString .
+
+risr:definition a owl:DatatypeProperty ;
+  rdfs:label "definition"@en,
+              "apibrėžtis"@lt ;
+  skos:definition
+    "Formal definition text (use language tags)."@en,
+    "Formalios apibrėžties tekstas (naudoti kalbos žymes)."@lt ;
+  rdfs:subPropertyOf skos:definition ;
+  rdfs:range rdf:langString .
+
+risr:inEnum a owl:ObjectProperty ;
+  rdfs:label "in enumeration"@en,
+              "priklauso enumeracijai"@lt ;
+  skos:definition
+    "Associates an enumeration item with its enumeration (concept scheme). Intended: exactly one per item."@en,
+    "Susieja sąrašo reikšmę su jos enumeracija (sąvokų schema). Numatyta: viena enumeracija vienai reikšmei."@lt ;
+  rdfs:subPropertyOf skos:inScheme ;
+  rdfs:domain risr:EnumItem ;
+  rdfs:range risr:Enum .
+
+risr:broader a owl:ObjectProperty ;
+  rdfs:label "broader"@en,
+              "platesnė"@lt ;
+  skos:definition
+    "Hierarchical broader relation between enumeration items, when applicable."@en,
+    "Hierarchinis ryšys tarp sąrašo reikšmių, kai taikoma."@lt ;
+  rdfs:subPropertyOf skos:broader ;
+  rdfs:domain risr:EnumItem ;
+  rdfs:range skos:Concept .
+</pre>
+</div>
+
+
+<h2>risr-core-1.0.rdf</h2>
+<div class="codebox">
+  <div class="toolbar">
+    <button data-copy="core_rdf" onclick="copyText('core_rdf')">Copy</button>
+    <span class="small">application/rdf+xml</span>
+  </div>
+  <pre id="core_rdf">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;rdf:RDF
+  xmlns:risr="https://data.gov.lt/datasets/gov/vssa/risr/core/1.0/"
+  xmlns:owl="http://www.w3.org/2002/07/owl#"
+  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+  xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+  xmlns:dct="http://purl.org/dc/terms/"&gt;
+
+  &lt;owl:Ontology rdf:about="https://data.gov.lt/datasets/gov/vssa/risr/core/1.0/"&gt;
+    &lt;dct:title xml:lang="en"&gt;RISR core vocabulary&lt;/dct:title&gt;
+    &lt;dct:title xml:lang="lt"&gt;RISR branduolinis žodynas&lt;/dct:title&gt;
+    &lt;dct:description xml:lang="en"&gt;Lightweight OWL2 core vocabulary aligned with SEMIC guidelines. Business identifiers are modeled as SKOS notations; API metadata is excluded.&lt;/dct:description&gt;
+    &lt;dct:description xml:lang="lt"&gt;Lightweight OWL2 branduolinis žodynas pagal SEMIC gaires. Verslo identifikatoriai modeliuojami kaip SKOS notacijos; API metaduomenys neįtraukti.&lt;/dct:description&gt;
+    &lt;dct:language&gt;lt&lt;/dct:language&gt;
+    &lt;dct:language&gt;en&lt;/dct:language&gt;
+    &lt;dct:hasVersion&gt;1.0&lt;/dct:hasVersion&gt;
+    &lt;dct:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"&gt;https://data.gov.lt/datasets/gov/vssa/risr/core/1.0/&lt;/dct:identifier&gt;
+  &lt;/owl:Ontology&gt;
+&lt;/rdf:RDF&gt;
+</pre>
+</div>
+
+
+  </section>
+</div>
+<footer>
+  Published via GitHub Pages from <code>/docs</code>. Recommended URL:
+  <code>https://ivpk.github.io/core_vocabularies/vssa/risr/core/1.0/</code>
+</footer>
+<script src="assets/scripts.js"></script>
+</body>
+</html>

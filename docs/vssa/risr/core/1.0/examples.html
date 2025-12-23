@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>RISR Core Vocabulary 1.0 — Examples</title>
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+
+<div class="topbar">
+  <div class="inner">
+    <div class="brand">Core vocabularies</div>
+    <div class="badges">
+      <span class="badge">vssa</span>
+      <span class="badge">risr</span>
+      <span class="badge">core</span>
+      <span class="badge">1.0</span>
+    </div>
+    <div style="flex:1"></div>
+    <a href="https://github.com/ivpk/core_vocabularies" style="color:#fff; opacity:.95">GitHub</a>
+  </div>
+</div>
+<div class="breadcrumbs" style="background:var(--accent);">
+  <div style="max-width:1200px;margin:0 auto;padding:0 18px 10px 18px;">
+    <span class="path">vssa / risr / core / 1.0</span>
+  </div>
+</div>
+
+<div class="wrap">
+  <nav class="nav">
+    <h3>Documentation</h3>
+    <a href="index.html" class="">Overview</a>
+<a href="core.html" class="">Core (TTL/RDF)</a>
+<a href="api.html" class="">API (TTL/RDF)</a>
+<a href="shacl.html" class="">SHACL Shapes</a>
+<a href="examples.html" class="active">Examples</a>
+<a href="downloads.html" class="">Downloads</a>
+    <hr/>
+    <h3>IRI</h3>
+    <div class="muted" style="font-size:13px;word-break:break-all">
+      https://data.gov.lt/datasets/gov/vssa/risr/core/1.0/
+    </div>
+  </nav>
+  <section class="main">
+    
+<h1>Minimal example data</h1>
+<p class="muted">Minimal Enum + EnumItems and an API response container.</p>
+
+<h2>risr-minimal-example.ttl</h2>
+<div class="codebox">
+  <div class="toolbar">
+    <button data-copy="ex_ttl" onclick="copyText('ex_ttl')">Copy</button>
+    <span class="small">text/turtle</span>
+  </div>
+  <pre id="ex_ttl">@prefix risr:     &lt;https://data.gov.lt/datasets/gov/vssa/risr/core/1.0/&gt; .
+@prefix risr-api: &lt;https://data.gov.lt/datasets/gov/vssa/risr/core/1.0/api/&gt; .
+@prefix xsd:      &lt;http://www.w3.org/2001/XMLSchema#&gt; .
+@prefix skos:     &lt;http://www.w3.org/2004/02/skos/core#&gt; .
+
+risr:ExampleStatusEnum a risr:Enum ;
+  risr:code "STATUS" ;
+  skos:prefLabel "Būsena"@lt, "Status"@en ;
+  skos:definition "Valdomas būsenų sąrašas pavyzdžiui."@lt,
+                  "A controlled list of statuses for demonstration."@en .
+
+risr:StatusActive a risr:EnumItem ;
+  risr:_id "3fa85f64-5717-4562-b3fc-2c963f66afa6" ;
+  risr:_revision "1" ;
+  risr:_txn "txn-20251223-0001" ;
+  risr:_created "2025-12-23T10:15:30Z"^^xsd:dateTime ;
+  risr:_label "Aktyvus"@lt ;
+  risr:code "ACTIVE" ;
+  skos:prefLabel "Aktyvus"@lt, "Active"@en ;
+  skos:definition "Objektas yra aktyvus."@lt, "The object is active."@en ;
+  risr:inEnum risr:ExampleStatusEnum .
+
+risr:StatusInactive a risr:EnumItem ;
+  risr:_id "7e57d004-2b97-0e7a-b45f-5387367791cd" ;
+  risr:_revision "1" ;
+  risr:_txn "txn-20251223-0001" ;
+  risr:_created "2025-12-23T10:15:30Z"^^xsd:dateTime ;
+  risr:_label "Neaktyvus"@lt ;
+  risr:code "INACTIVE" ;
+  skos:prefLabel "Neaktyvus"@lt, "Inactive"@en ;
+  skos:definition "Objektas yra neaktyvus."@lt, "The object is inactive."@en ;
+  risr:inEnum risr:ExampleStatusEnum .
+
+risr-api:ExampleResponse a risr-api:ResponseContainer ;
+  risr-api:_cid "cid-0001" ;
+  risr-api:_data risr:ExampleStatusEnum,
+                risr:StatusActive,
+                risr:StatusInactive .
+</pre>
+</div>
+
+
+<h2>risr-minimal-example.rdf</h2>
+<div class="codebox">
+  <div class="toolbar">
+    <button data-copy="ex_rdf" onclick="copyText('ex_rdf')">Copy</button>
+    <span class="small">application/rdf+xml</span>
+  </div>
+  <pre id="ex_rdf">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;rdf:RDF
+  xmlns:risr="https://data.gov.lt/datasets/gov/vssa/risr/core/1.0/"
+  xmlns:risr-api="https://data.gov.lt/datasets/gov/vssa/risr/core/1.0/api/"
+  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+  xmlns:skos="http://www.w3.org/2004/02/skos/core#"&gt;
+
+  &lt;risr:Enum rdf:about="https://data.gov.lt/datasets/gov/vssa/risr/core/1.0/ExampleStatusEnum"&gt;
+    &lt;risr:code&gt;STATUS&lt;/risr:code&gt;
+    &lt;skos:prefLabel xml:lang="lt"&gt;Būsena&lt;/skos:prefLabel&gt;
+    &lt;skos:prefLabel xml:lang="en"&gt;Status&lt;/skos:prefLabel&gt;
+    &lt;skos:definition xml:lang="lt"&gt;Valdomas būsenų sąrašas pavyzdžiui.&lt;/skos:definition&gt;
+    &lt;skos:definition xml:lang="en"&gt;A controlled list of statuses for demonstration.&lt;/skos:definition&gt;
+  &lt;/risr:Enum&gt;
+
+  &lt;risr:EnumItem rdf:about="https://data.gov.lt/datasets/gov/vssa/risr/core/1.0/StatusActive"&gt;
+    &lt;risr:_id&gt;3fa85f64-5717-4562-b3fc-2c963f66afa6&lt;/risr:_id&gt;
+    &lt;risr:_revision&gt;1&lt;/risr:_revision&gt;
+    &lt;risr:_txn&gt;txn-20251223-0001&lt;/risr:_txn&gt;
+    &lt;risr:_created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"&gt;2025-12-23T10:15:30Z&lt;/risr:_created&gt;
+    &lt;risr:_label xml:lang="lt"&gt;Aktyvus&lt;/risr:_label&gt;
+    &lt;risr:code&gt;ACTIVE&lt;/risr:code&gt;
+    &lt;skos:prefLabel xml:lang="lt"&gt;Aktyvus&lt;/skos:prefLabel&gt;
+    &lt;skos:prefLabel xml:lang="en"&gt;Active&lt;/skos:prefLabel&gt;
+    &lt;skos:definition xml:lang="lt"&gt;Objektas yra aktyvus.&lt;/skos:definition&gt;
+    &lt;skos:definition xml:lang="en"&gt;The object is active.&lt;/skos:definition&gt;
+    &lt;risr:inEnum rdf:resource="https://data.gov.lt/datasets/gov/vssa/risr/core/1.0/ExampleStatusEnum"/&gt;
+  &lt;/risr:EnumItem&gt;
+
+  &lt;risr:EnumItem rdf:about="https://data.gov.lt/datasets/gov/vssa/risr/core/1.0/StatusInactive"&gt;
+    &lt;risr:_id&gt;7e57d004-2b97-0e7a-b45f-5387367791cd&lt;/risr:_id&gt;
+    &lt;risr:_revision&gt;1&lt;/risr:_revision&gt;
+    &lt;risr:_txn&gt;txn-20251223-0001&lt;/risr:_txn&gt;
+    &lt;risr:_created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"&gt;2025-12-23T10:15:30Z&lt;/risr:_created&gt;
+    &lt;risr:_label xml:lang="lt"&gt;Neaktyvus&lt;/risr:_label&gt;
+    &lt;risr:code&gt;INACTIVE&lt;/risr:code&gt;
+    &lt;skos:prefLabel xml:lang="lt"&gt;Neaktyvus&lt;/skos:prefLabel&gt;
+    &lt;skos:prefLabel xml:lang="en"&gt;Inactive&lt;/skos:prefLabel&gt;
+    &lt;skos:definition xml:lang="lt"&gt;Objektas yra neaktyvus.&lt;/skos:definition&gt;
+    &lt;skos:definition xml:lang="en"&gt;The object is inactive.&lt;/skos:definition&gt;
+    &lt;risr:inEnum rdf:resource="https://data.gov.lt/datasets/gov/vssa/risr/core/1.0/ExampleStatusEnum"/&gt;
+  &lt;/risr:EnumItem&gt;
+
+  &lt;risr-api:ResponseContainer rdf:about="https://data.gov.lt/datasets/gov/vssa/risr/core/1.0/api/ExampleResponse"&gt;
+    &lt;risr-api:_cid&gt;cid-0001&lt;/risr-api:_cid&gt;
+    &lt;risr-api:_data rdf:resource="https://data.gov.lt/datasets/gov/vssa/risr/core/1.0/ExampleStatusEnum"/&gt;
+    &lt;risr-api:_data rdf:resource="https://data.gov.lt/datasets/gov/vssa/risr/core/1.0/StatusActive"/&gt;
+    &lt;risr-api:_data rdf:resource="https://data.gov.lt/datasets/gov/vssa/risr/core/1.0/StatusInactive"/&gt;
+  &lt;/risr-api:ResponseContainer&gt;
+
+&lt;/rdf:RDF&gt;
+</pre>
+</div>
+
+
+  </section>
+</div>
+<footer>
+  Published via GitHub Pages from <code>/docs</code>. Recommended URL:
+  <code>https://ivpk.github.io/core_vocabularies/vssa/risr/core/1.0/</code>
+</footer>
+<script src="assets/scripts.js"></script>
+</body>
+</html>
