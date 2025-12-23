@@ -53,21 +53,7 @@
   <div class="k">Repository</div><div><code>https://github.com/ivpk/core_vocabularies</code></div>
   <div class="k">Publish path</div><div><code>/vssa/risr/core/1.0/</code></div>
 </div>
-
-<h2>Model summary</h2>
-<table class="table">
-  <thead><tr><th>Element</th><th>Description</th></tr></thead>
-  <tbody>
-    <tr><td><code>risr:Entity</code></td><td>Base abstraction with technical metadata (<code>_id</code>, <code>_revision</code>, <code>_txn</code>, …).</td></tr>
-    <tr><td><code>risr:Enum</code></td><td>Enumeration represented as <code>skos:ConceptScheme</code>.</td></tr>
-    <tr><td><code>risr:EnumItem</code></td><td>Enumeration item represented as <code>skos:Concept</code> and also <code>risr:Entity</code>.</td></tr>
-    <tr><td><code>risr:code</code></td><td>Business identifier (subproperty of <code>skos:notation</code>).</td></tr>
-    <tr><td><code>risr:inEnum</code></td><td>Links an <code>EnumItem</code> to its <code>Enum</code> (intended 1..1; enforced in SHACL).</td></tr>
-  </tbody>
-</table>
-
- 
-  <h2>Conceptual data model (UML)</h2>
+      <h2>Conceptual data model (UML)</h2>
 <p class="muted">
 The conceptual data model defines the core entities and relationships
 underlying the RISR core vocabulary.
@@ -83,6 +69,18 @@ underlying the RISR core vocabulary.
   alt="RISR core conceptual UML model"
   style="max-width:100%;border:1px solid #d0d7de;border-radius:8px;background:#fff"
 />
+
+<h2>Model summary</h2>
+<table class="table">
+  <thead><tr><th>Element</th><th>Description</th></tr></thead>
+  <tbody>
+    <tr><td><code>risr:Entity</code></td><td>Base abstraction with technical metadata (<code>_id</code>, <code>_revision</code>, <code>_txn</code>, …).</td></tr>
+    <tr><td><code>risr:Enum</code></td><td>Enumeration represented as <code>skos:ConceptScheme</code>.</td></tr>
+    <tr><td><code>risr:EnumItem</code></td><td>Enumeration item represented as <code>skos:Concept</code> and also <code>risr:Entity</code>.</td></tr>
+    <tr><td><code>risr:code</code></td><td>Business identifier (subproperty of <code>skos:notation</code>).</td></tr>
+    <tr><td><code>risr:inEnum</code></td><td>Links an <code>EnumItem</code> to its <code>Enum</code> (intended 1..1; enforced in SHACL).</td></tr>
+  </tbody>
+</table>
  </section>
 </div>
 <footer>
